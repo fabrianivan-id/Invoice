@@ -1,0 +1,20 @@
+{
+  "err_expired_token_title": {
+    "other": "Expired Token"
+  },
+  "err_expired_token_message": {
+    "other": "Token you provided has expired"
+  },
+  "err_invoice_id_not_found_title": {
+    "other": "Invoice id not found"
+  },
+  "err_invoice_id_not_found_message": {
+    "other": "The invoice id provided could not be found"
+  },
+  "err_invoices_data_duplicate_title": {
+    "other": "Invoices data duplicate"
+  },
+  "err_invoices_data_duplicate_message": {
+    "other": "Invoices data already exist"
+  }
+}

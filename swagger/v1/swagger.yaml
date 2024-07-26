@@ -1,0 +1,280 @@
+definitions:
+  esb-test_library_utils.Pagination:
+    properties:
+      page:
+        type: integer
+      total_data:
+        type: integer
+      total_page:
+        type: integer
+    type: object
+  esb-test_src_middleware_response.Error:
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+      message_severity:
+        type: string
+      message_title:
+        type: string
+    type: object
+  esb-test_src_middleware_response.Meta:
+    properties:
+      request_id:
+        type: string
+    type: object
+  esb-test_src_middleware_response.Response:
+    properties:
+      data: {}
+      error:
+        $ref: '#/definitions/esb-test_src_middleware_response.Error'
+      metadata:
+        $ref: '#/definitions/esb-test_src_middleware_response.Meta'
+      success:
+        type: boolean
+    type: object
+  esb-test_src_v1_contract.MovieListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/esb-test_src_v1_contract.MovieResponseBody'
+        type: array
+      pagination:
+        $ref: '#/definitions/esb-test_library_utils.Pagination'
+    type: object
+  esb-test_src_v1_contract.MovieRequest:
+    properties:
+      description:
+        type: string
+      image:
+        type: string
+      rating:
+        type: number
+      title:
+        type: string
+    required:
+    - description
+    - image
+    - rating
+    - title
+    type: object
+  esb-test_src_v1_contract.MovieResponse:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      image:
+        type: string
+      rating:
+        type: number
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  esb-test_src_v1_contract.MovieResponseBody:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      image:
+        type: string
+      rating:
+        type: number
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: CMS Administrator API
+  title: CMS Service
+  version: "1.0"
+paths:
+  /v1/movie:
+    get:
+      consumes:
+      - application/json
+      description: get movie pagination by page, limit, keyword
+      parameters:
+      - description: page
+        in: query
+        name: page
+        type: string
+      - description: limit
+        in: query
+        name: limit
+        type: string
+      - description: keyword
+        in: query
+        name: keyword
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/esb-test_src_middleware_response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/esb-test_src_v1_contract.MovieListResponse'
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/esb-test_src_middleware_response.Response'
+      summary: Get list movie
+      tags:
+      - v1-movie
+    post:
+      consumes:
+      - application/json
+      description: create movie
+      parameters:
+      - description: movie_information
+        in: body
+        name: movie
+        required: true
+        schema:
+          $ref: '#/definitions/esb-test_src_v1_contract.MovieRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/esb-test_src_middleware_response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/esb-test_src_v1_contract.MovieResponse'
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/esb-test_src_middleware_response.Response'
+      summary: Create movie
+      tags:
+      - v1-movie
+  /v1/movie/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete movie by id
+      parameters:
+      - description: Movie ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/esb-test_src_middleware_response.Response'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/esb-test_src_middleware_response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/esb-test_src_middleware_response.Response'
+      summary: Delete movie
+      tags:
+      - v1-movie
+    get:
+      consumes:
+      - application/json
+      description: get movie by id
+      parameters:
+      - description: Movie ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/esb-test_src_middleware_response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/esb-test_src_v1_contract.MovieResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/esb-test_src_middleware_response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/esb-test_src_middleware_response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/esb-test_src_middleware_response.Response'
+      summary: Get movie
+      tags:
+      - v1-movie
+    put:
+      consumes:
+      - application/json
+      description: update movie
+      parameters:
+      - description: Movie ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: movie_information
+        in: body
+        name: movie
+        required: true
+        schema:
+          $ref: '#/definitions/esb-test_src_v1_contract.MovieRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/esb-test_src_middleware_response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/esb-test_src_middleware_response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/esb-test_src_middleware_response.Response'
+      summary: Update movie
+      tags:
+      - v1-movie
+securityDefinitions:
+  cms-token:
+    description: 'Value is: "Bearer {access_token}", where access_token is retrieved
+      from cms-service/v1/login'
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

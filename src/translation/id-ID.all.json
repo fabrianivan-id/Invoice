@@ -1,0 +1,20 @@
+{
+  "err_expired_token_title": {
+    "other": "Token telah kedaluwarsa"
+  },
+  "err_expired_token_message": {
+    "other": "Token yang Anda berikan telah kedaluwarsa"
+  },
+  "err_invoice_id_not_found_title": {
+    "other": "Invoicee ID tidak ditemukan"
+  },
+  "err_invoice_id_not_found_message": {
+    "other": "Invoice ID yang Anda berikan tidak ditemukan"
+  },
+  "err_invoices_data_duplicate_title": {
+    "other": "Duplikasi invoice data"
+  },
+  "err_invoices_data_duplicate_message": {
+    "other": "Invoice data sudah ada"
+  }
+}

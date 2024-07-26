@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "4e1dc8d2-470f-4aeb-90c2-6de8a358c987",
+		"name": "Invoice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19098268"
+	},
+	"item": [
+		{
+			"name": "Create Invoice",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Nun 2",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Nun 2",
+							"type": "text"
+						},
+						{
+							"key": "rating",
+							"value": "7.5",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/Users/fabrianivan/Downloads/Nun.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseurl}}/xsis-test/v1/invoice",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"xsis-test",
+						"v1",
+						"invoice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all invoices",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/xsis-test/v1/invoice",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"xsis-test",
+						"v1",
+						"invoice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get invoice  3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{baseurl}}/xsis-test/v1/invoice/3",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"xsis-test",
+						"v1",
+						"invoice",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseurl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
